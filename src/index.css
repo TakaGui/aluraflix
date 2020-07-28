@@ -32,6 +32,13 @@ body {
   padding-top: var(--bodyPaddingTop);
 }
 
+@media screen and (max-width: 800px) {
+  body {
+    --bodyPaddingTop: 40px;
+    padding-top: var(--bodyPaddingTop);
+  }
+}
+
 a {
   color: inherit;
 } 
