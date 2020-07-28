@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Menu from './components/Menu';
-import dadosIniciais from './data/dados_iniciais.json';
-import BannerMain from './components/BannerMain';
-import Carousel from './components/Carousel';
-import Footer from './components/Footer';
+import Menu from '../../components/Menu';
+import dadosIniciais from '../../data/dados_iniciais.json';
+import BannerMain from '../../components/BannerMain';
+import Carousel from '../../components/Carousel';
+import Footer from '../../components/Footer';
 
-const AppWrapper = styled.div`
+const HomeWrapper = styled.div`
   background: var(--grayDark);
 
   padding-top: 94px;
@@ -17,9 +17,9 @@ const AppWrapper = styled.div`
   }
 `;
 
-function App() {
+function Home() {
   return (
-    <AppWrapper>
+    <HomeWrapper>
       <Menu />
       
       <div>
@@ -56,8 +56,8 @@ function App() {
       </div>
       
       <Footer />
-    </AppWrapper>
+    </HomeWrapper>
   );
 }
 
-export default App;
+export default Home;
