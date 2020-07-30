@@ -38,7 +38,7 @@ function UploadCategory() {
   }
 
   useEffect(() => {
-    const URL = 'http://localhost:3030/categories';
+    const URL = 'http://localhost:8080/categories';
 
     fetch(URL).then(async (response) => {
       const responseServer = await response.json();
