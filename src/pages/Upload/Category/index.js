@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button/styles';
 
 function UploadCategory() {
   const defaultValues = {
@@ -18,7 +19,7 @@ function UploadCategory() {
     event.preventDefault();
 
     setCategories([...categories, values]);
-    
+
     setValues(defaultValues);
   }
 
@@ -31,15 +32,28 @@ function UploadCategory() {
 
   function handleChangeValues(event) {
     setValue(
-      event.target.getAttribute('name'), 
-      event.target.value
+      event.target.getAttribute('name'),
+      event.target.value,
     );
   }
 
+  useEffect(() => {
+    const URL = 'http://localhost:3030/categories';
+
+    fetch(URL).then(async (response) => {
+      const responseServer = await response.json();
+      setCategories([...responseServer]);
+    });
+  }, []);
+
   return (
     <PageDefault>
-      <h1>Cadastro de categoria: {values.name}</h1>
-      
+      <h1>
+        Cadastro de categoria:
+        {' '}
+        {values.name}
+      </h1>
+
       <form onSubmit={handleSubmit}>
 
         <FormField
@@ -50,17 +64,13 @@ function UploadCategory() {
           onChange={handleChangeValues}
         />
 
-        <div>
-          <label>
-            Descrição:
-            <textarea 
-              type="text"
-              value={values.description}
-              name="description"
-              onChange={handleChangeValues}
-            />
-          </label>
-        </div>
+        <FormField
+          label="Descrição"
+          type="textarea"
+          value={values.description}
+          name="description"
+          onChange={handleChangeValues}
+        />
 
         <FormField
           label="Cor"
@@ -70,21 +80,25 @@ function UploadCategory() {
           onChange={handleChangeValues}
         />
 
-        <button>
+        <Button>
           Cadastrar
-        </button>
+        </Button>
       </form>
 
+      {categories.length === 0 && (
+        <div>
+          Loading...
+        </div>
+      )}
+
       <ul>
-        {categories.map((category, id) => {
-          return (
-            <li key={`${category}${id}`}>
-              {category.name}
-            </li>
-          );
-        })}
+        {categories.map((category) => (
+          <li key={`${category.name}`}>
+            {category.name}
+          </li>
+        ))}
       </ul>
-      
+
       <Link to="/">
         Ir para home
       </Link>

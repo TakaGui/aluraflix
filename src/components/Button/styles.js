@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  color: var(--white);
+  background: var(--black);
   border: 1px solid var(--white);
+  border-radius: 5px;
   box-sizing: border-box;
+  color: var(--white);
   cursor: pointer;
-  padding: 16px 24px;
+  display: inline-block;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   outline: none;
-  border-radius: 5px;
+  padding: 16px 24px;
   text-decoration: none;
-  display: inline-block;
   transition: opacity .3s;
 
   &:hover,
