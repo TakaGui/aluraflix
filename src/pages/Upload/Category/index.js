@@ -7,7 +7,7 @@ import Button from '../../../components/Button/styles';
 
 function UploadCategory() {
   const defaultValues = {
-    name: '',
+    title: '',
     description: '',
     color: '#000000',
   };
@@ -53,7 +53,7 @@ function UploadCategory() {
       <h1>
         Cadastro de categoria:
         {' '}
-        {values.name}
+        {values.title}
       </h1>
 
       <form onSubmit={handleSubmit}>
@@ -61,8 +61,8 @@ function UploadCategory() {
         <FormField
           label="Nome da Categoria"
           type="text"
-          value={values.name}
-          name="name"
+          value={values.title}
+          name="title"
           onChange={handleChangeValues}
         />
 
@@ -95,8 +95,8 @@ function UploadCategory() {
 
       <ul>
         {categories.map((category) => (
-          <li key={`${category.name}`}>
-            {category.name}
+          <li key={`${category.title}`}>
+            {category.title}
           </li>
         ))}
       </ul>
