@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button/styles';
+import useForm from '../../../hooks/useForm';
 
 function UploadCategory() {
   const defaultValues = {
@@ -12,29 +13,16 @@ function UploadCategory() {
     color: '#000000',
   };
 
+  const { values, handleChangeValues, clearForm } = useForm(defaultValues);
+
   const [categories, setCategories] = useState([]);
-  const [values, setValues] = useState(defaultValues);
 
   function handleSubmit(event) {
     event.preventDefault();
 
     setCategories([...categories, values]);
 
-    setValues(defaultValues);
-  }
-
-  function setValue(key, value) {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handleChangeValues(event) {
-    setValue(
-      event.target.getAttribute('name'),
-      event.target.value,
-    );
+    clearForm();
   }
 
   useEffect(() => {
